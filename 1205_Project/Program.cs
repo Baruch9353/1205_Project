@@ -22,13 +22,6 @@ namespace _1205_Project
         }
 
 
-
-
-
-
-
-
-
         //Series request end Validation
         static void seriesRequest()
         {
