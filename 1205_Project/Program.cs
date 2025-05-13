@@ -10,60 +10,48 @@ namespace _1205_Project
     internal class Program
     {
 
-        //List of numbers
-        static List<double> series = new List<double>();
+
+        //arry of numbers
+        static string[] series = new string[1];
 
 
-        
+
         // Checks for arguments
-        static bool checkArgs(string[] args)
-        {
-            return args.Length > 0;
+        //static bool checkArgs(string[] args)
+        //{
+        //    return args.Length > 2;
+        //}
+
+
+        //Validation
+        static bool Validation(string input)
+        { 
+                return int.TryParse(input , out _);
+            
+
         }
 
 
-        //Series request end Validation
+
+        //Series request  
         static void seriesRequest()
         {
-            series.Clear();
             Console.WriteLine("Please enter at least 3 positive numbers with a space between them:");
-            string strSeries = Console.ReadLine();
-            while (true)
-            {
-                string input = Console.ReadLine();
-               
-                string[] separator = new string[] { " " };
-                
-                //הורדת רווחים מיותרים
-                StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries;
-
-                string[] parts = input.Split(separator, options);
+            string input = Console.ReadLine();
+            string[] parts = input.Split(' ');
 
 
-
-                List<double> numbers = new List<double>();
-
-                foreach (string part in parts)
-                {
-                    if (double.TryParse(part, out double num) && num > 0)
-                    {
-                        numbers.Add(num);
-                    }
-                }
-             
-
-                if (numbers.Count >= 3)
-                {
-                    series = numbers;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter at least 3 positive numbers");
-                }
-            }
 
         }
+        //Args or a series from the user
+        //static void seriesSelection(string[] args)
+        //{
+        //    if (checkArgs(args))
+        //    {
+                
+        //    }
+
+        //}
 
 
 
@@ -71,12 +59,12 @@ namespace _1205_Project
 
 
 
-        
 
         static void Main(string[] args)
         {
-           
-           
+
+            
+
         }
     }
 }
