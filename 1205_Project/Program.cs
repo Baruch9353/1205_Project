@@ -34,7 +34,7 @@ namespace _1205_Project
                
                 string[] separator = new string[] { " " };
                 
-                //לא מאוד הבנתי אבל זה עובד
+                //הורדת רווחים מיותרים
                 StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries;
 
                 string[] parts = input.Split(separator, options);
