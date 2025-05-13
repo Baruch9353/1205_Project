@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,60 +10,71 @@ namespace _1205_Project
 {
     internal class Program
     {
+        static List <string> series = new List<string>();   
 
-        //List of numbers
-        static List<double> series = new List<double>();
-
-
-        
-        // Checks for arguments
-        static bool checkArgs(string[] args)
+        //Validation
+        static bool positiveNumber(string input)
         {
-            return args.Length > 0;
+            return int.TryParse(input, out int number) && number > 0;
         }
 
 
-        //Series request end Validation
+
+
+        //Series request  
         static void seriesRequest()
-        {
-            series.Clear();
+        {         
             Console.WriteLine("Please enter at least 3 positive numbers with a space between them:");
-            string strSeries = Console.ReadLine();
-            while (true)
+            string input = Console.ReadLine();
+            string[] parts = input.Split(' ');
+            foreach (string part in parts)
             {
-                string input = Console.ReadLine();
-               
-                string[] separator = new string[] { " " };
-                
-                //לא מאוד הבנתי אבל זה עובד
-                StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries;
-
-                string[] parts = input.Split(separator, options);
-
-
-
-                List<double> numbers = new List<double>();
-
-                foreach (string part in parts)
-                {
-                    if (double.TryParse(part, out double num) && num > 0)
-                    {
-                        numbers.Add(num);
-                    }
-                }
-             
-
-                if (numbers.Count >= 3)
-                {
-                    series = numbers;
-                    break;
+                if (positiveNumber(part))
+                { 
+                   series.Add(part);                      
                 }
                 else
                 {
-                    Console.WriteLine("Please enter at least 3 positive numbers");
-                }
+                    seriesRequest();    
+                }                
             }
+            //menu()
+        }
 
+
+
+        //menu
+        static void PrintMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("=========== MENU ===========");
+            Console.WriteLine(" 1. Input a Series (Replace current)");
+            Console.WriteLine(" 2. Display Series (Original Order)");
+            Console.WriteLine(" 3. Display Series (Reversed Order)");
+            Console.WriteLine(" 4. Display Series (Sorted Ascending)");
+            Console.WriteLine(" 5. Display Max Value");
+            Console.WriteLine(" 6. Display Min Value");
+            Console.WriteLine(" 7. Display Average");
+            Console.WriteLine(" 8. Display Number of Elements");
+            Console.WriteLine(" 9. Display Sum");
+            Console.WriteLine("10. Exit");
+            Console.WriteLine("============================");
+            Console.Write("Enter your choice (1-10): ");
+
+            ChoiceMenu();
+        }
+
+
+        static void ChoiceMenu()
+        {
+            string choice = (Console.ReadLine());
+            if (positiveNumber(choice))
+            {
+                switch (choice)
+                {
+                   
+                }
+            
         }
 
 
@@ -71,12 +83,11 @@ namespace _1205_Project
 
 
 
-        
 
         static void Main(string[] args)
         {
-           
-           
+            seriesRequest();
+
         }
     }
 }
